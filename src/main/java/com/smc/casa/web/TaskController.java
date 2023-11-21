@@ -64,4 +64,19 @@ public class TaskController {
             return new RedirectView("error");
         }
     }
+
+    @PostMapping("/deleteTask/{id}")
+    public RedirectView deleteTask(Model model, @PathVariable("id") long id) {
+        try {
+            Task taskToDelete = service.findById(id);
+            Task deletedTask = service.deleteOne(taskToDelete, id);
+            List<Task> taskList = service.findAll();
+            model.addAttribute("taskList", taskList);
+            return new RedirectView("/indexCestaCompra");
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
+            return new RedirectView("error");
+        }
+    }
+
 }
