@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> MariSan - Tareas </title>
+    <link rel="shortcut icon" href="https://imagizer.imageshack.com/img924/6236/XPuFx7.png">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<style>
+    .navbar {
+        background-color: dark-grey;
+        height:10px;
+        padding:0px;
+    }
+    pre {
+        white-space: pre-line;
+    }
+    img {
+		position: relative;
+		float: left;
+		margin-right: 20px;
+		margin-top: 5px;
+	}
+</style>
+<body>
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header mr-auto">
+            <img src="https://imagizer.imageshack.com/img924/4269/sKWlFS.png" alt="logo"/>
+            <a class="navbar-brand" href="#" th:href="@{/}">Gestion MariSan</a>
+            <a class="navbar-brand" href="#" th:href="@{/registration}">Registro</a>
+            <a class="navbar-brand" href="#" th:href="@{/create_book}">Inserta Tarea</a>
+            <a class="navbar-brand" href="#" th:href="@{/logout}">Salir</a>
+        </div>
+    </div>
+</nav>
+
+<br><br><br><br><br><br><br>
+    <div class ="container">
+        <div class="transform">
+            <h1>Tareas</h1>
+            <c>Listado de todas las Tareas.</c>
+        </div>
+        <br><br>
+        <div class = "col-lg-3" style="padding-left:0; margin-top:20px;">
+            <a th:href = "@{/create_book}" class = "btn btn-success btn-sm mb-3"> Nueva Tarea </a>
+        </div>
+        <table class = "table table-striped">
+            <thead class = "table-success">
+            <tr>
+                <th>
+                    <a class = "text-dark" th:href="@{'/page/' + ${currentPage} + '?sortField=isbn&sortDir=' + ${reverseSortDir}}">Id</a>
+                </th>
+                <th>
+                    <a class = "text-dark" th:href="@{'/page/' + ${currentPage} + '?sortField=title&sortDir=' + ${reverseSortDir}}">Descripción</a>
+                </th>
+                <th>
+                    <a class = "text-dark" th:href="@{'/page/' + ${currentPage} + '?sortField=author&sortDir=' + ${reverseSortDir}}">Autor</a>
+                </th>
+                <th>
+                    <a class = "text-dark" th:href="@{'/page/' + ${currentPage} + '?sortField=status&sortDir=' + ${reverseSortDir}}">Estado</a>
+                </th>
+                <th class = "text-dark"> Borrar/Modificar </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "book: ${books}">
+                <td th:text = "${book.isbn}"/>
+                <td>
+                    <pre th:text="${book.title}" style="white-space: pre-line;"></pre>
+                </td>
+                <td th:text = "${book.author}"/>
+                <td th:text = "${book.status}"/>
+                <td>
+                    <a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-outline-secondary"
+                       style="border-color: #28a745; transition: border-color 0.3s; display: inline-block;">
+                        Modificar
+                    </a>
+
+                    <a th:href="@{/{id}(id=${book.id})}" class="btn btn-outline-danger"
+                       style="border-color: #28a745; transition: border-color 0.3s; display: inline-block;">
+                        Borrar
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:if = "${totalPages > 1}">
+            <div class = "row col-sm-10">
+                <div class = "col-sm-2">
+                    Total Rows: [[${totalItems}]]
+                </div>
+                <div class = "col-sm-1">
+                        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                            <a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                            <span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+                        </span>
+                </div>
+                <div class = "col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Siguiente</a>
+                    <span th:unless="${currentPage < totalPages}">Siguiente</span>
+                </div>
+
+                <div class="col-sm-1">
+                    <a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+                    <span th:unless="${currentPage < totalPages}">Last</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

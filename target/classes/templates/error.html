@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> MariSan - Error </title>
+    <link rel="shortcut icon" href="https://imagizer.imageshack.com/img924/6236/XPuFx7.png">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<style>
+    .navbar {
+        background-color : dark-grey;
+        heigth : 10px;
+        padding : 0px;
+    }
+    img {
+		position: relative;
+		float: left;
+		margin-right: 20px;
+		margin-top: 5px;
+	}
+</style>
+    <body>
+    <!-- create navigation bar ( header) -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header mr-auto">
+                <img src="https://imagizer.imageshack.com/img924/4269/sKWlFS.png" alt="logo"/>
+                <a class="navbar-brand" href="#" th:href="@{/}">Gestion MariSan</a>
+                <a class="navbar-brand" href="#" th:href="@{/books}">Tareas</a>
+                <a class="navbar-brand" href="#" th:href="@{/logout}">Salir</a>
+            </div>
+        </div>
+    </nav>
+    <br><br><br><br><br><br>
+        <div class ="container">
+            <h1 style="margin-top:20px;margin-bottom:20px;">Reporte Errores del Sistema</h1>
+            <table class = "table table-striped">
+                <tr>
+                    <td>Fecha</td>
+                    <td th:text="${timestamp}"/>
+                </tr>
+                <tr>
+                    <td>Directorio</td>
+                    <td th:text="${path}"/>
+                </tr>
+                <tr>
+                    <td>Error</td>
+                    <td th:text="${error}"/>
+                </tr>
+                <tr>
+                    <td>Estado</td>
+                    <td th:text="${status}"/>
+                </tr>
+                <tr>
+                    <td>Mensaje</td>
+                    <td th:text="${message}"/>
+                </tr>
+            </table>
+        </div>
+    </body>
+    </html>
