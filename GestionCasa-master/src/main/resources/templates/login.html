@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>MariSan - Login</title>
+	<link rel="shortcut icon" href="https://imagizer.imageshack.com/img924/6236/XPuFx7.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<style>
+	.navbar {
+        background-color: dark-grey;
+    }
+
+    img {
+        position: relative;
+        float: left;
+        margin-right: 20px;
+        margin-top: 5px;
+    }
+
+    .login-container {
+        margin-top: 50px; /* Ajuste de margen superior */
+    }
+
+    .login-form {
+        margin-bottom: 20px; /* Ajuste de margen inferior */
+    }
+
+    /* Cambiar el color azul a verde (#28a745) para el botón */
+    .btn-primary {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-primary:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+
+    .btn-outline-primary {
+        color: #28a745;
+        border-color: #28a745;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #28a745;
+        border-color: #28a745;
+        color: #fff;
+    }
+
+    /* Cambiar el color azul a verde (#28a745) para los campos y sus efectos */
+    .form-control {
+        border-color: #28a745;
+        outline: none; /* Quitar el resaltado azul al completar los campos */
+        box-shadow: none; /* Quitar el resaltado azul dentro del campo de texto */
+    }
+
+    .form-control:focus {
+        border-color: #28a745;
+        box-shadow: none; /* Quitar el resaltado azul dentro del campo de texto al enfocar */
+    }
+</style>
+
+<body>
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<img src="https://imagizer.imageshack.com/img924/4269/sKWlFS.png" alt="logo" />
+			<a class="navbar-brand" href="#" th:href="@{/}">Gestion MariSan</a>
+			<!-- <a class="navbar-brand" href="#" th:href="@{/registration}">Registro</a> -->
+		</div>
+	</div>
+</nav>
+<br><br><br><br><br>
+<div class="container login-container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 login-form">
+			<!-- logout mensaje -->
+			<div th:if="${param.logout}">
+				<div class="alert alert-info" style="background-color: #FFEBCD; border-color: #FFD700; color: #FFA500;">
+					Has Salido CORRECTAMENTE.
+				</div>
+			</div>
+			<h1>Login</h1>
+			<c>Accede con tus credenciales</c>
+			<br><br><br><br>
+			<form th:action="@{/login}" method="post">
+				<!-- error mensaje -->
+				<div th:if="${param.error}">
+					<div class="alert alert-danger">Nombre de Usuario o contraseña INCORRECTO.</div>
+				</div>
+				<!-- login mensaje -->
+				<div th:if="${param.login}">
+					<div class="alert alert-success">
+						<strong> Login Correcto!</strong> Hola!!!
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="username"> Nombre de Usuario </label> : <input type="text" class="form-control"
+																			   id="username" name="username" placeholder="Escribe el Email" autofocus="autofocus">
+				</div>
+
+				<div class="form-group">
+					<label for="password">Password</label>: <input type="password" id="password" name="password"
+																   class="form-control" placeholder="Escribe el Password" />
+				</div>
+				<div class="form-group">
+					<input type="submit" name="login-submit" id="login-submit" class="btn btn-primary"
+						   value="Log In" />
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+
+</html>

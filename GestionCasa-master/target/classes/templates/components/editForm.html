@@ -1,0 +1,11 @@
+<form th:fragment="_editForm" th:action="@{/editTask/{id}(id=${task.id})}" th:object="${task}" method="post"
+      class="w-50 p-3 mx-auto d-none"
+      id="form-edit" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="form-group">
+        <input type="text" placeholder="Producto.." class="w-75" th:field="*{title}" th:text="${task.title}">
+    </div>
+    <div class="d-flex mx-auto justify-content-around w-50">
+        <button type="submit" class="btn btn-outline-secondary"> Guardar </button>
+        <a href="" class="btn btn-outline-secondary"> Cancelar </a>
+    </div>
+</form>

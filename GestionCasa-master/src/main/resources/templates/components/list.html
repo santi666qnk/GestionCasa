@@ -1,0 +1,17 @@
+<ul th:fragment="_list" class="list-group w-50 p-3 mx-auto" id="list" th:if="${not #lists.isEmpty(taskList)}"
+    xmlns:th="http://www.w3.org/1999/xhtml">
+    <li class="list-group-item d-flex align-items-center" th:each="task : ${taskList}">
+        <input type="checkbox" class="mr-2 checkbox" th:checked="${task.marked}" th:value="${task.id}"/>
+        <h5 class="align-self-end" th:text="${task.title}"></h5>
+        <div class="ml-auto p-2 d-flex align-items-center">
+            <form th:action="@{/editTask/{id}(id=${task.id})}" method="get">
+                <button type="submit" class="btn btn-outline-secondary mr-2" style="border-color: #28a745; transition: border-color 0.3s;">Editar</button>
+            </form>
+
+            <!-- Agrega el formulario para el botón de eliminación -->
+            <form th:action="@{/deleteTask/{id}(id=${task.id})}" method="post">
+                <button type="submit" class="btn btn-outline-danger" style="border-color: #dc3545; transition: border-color 0.3s;">Eliminar</button>
+            </form>
+        </div>
+    </li>
+</ul>

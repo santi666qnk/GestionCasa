@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title> MariSan - Modificar Tarea </title>
+    <link rel="shortcut icon" href="https://imagizer.imageshack.com/img924/6236/XPuFx7.png">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<style>
+    .navbar {
+        background-color: dark-grey;
+        height:10px;
+        padding:0px;
+    }
+    img {
+		position: relative;
+		float: left;
+		margin-right: 20px;
+		margin-top: 5px;
+	}
+</style>
+<body>
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header mr-auto">
+            <img src="https://imagizer.imageshack.com/img924/4269/sKWlFS.png" alt="logo"/>
+            <a class="navbar-brand" href="#" th:href="@{/}">Gestion MariSan</a>
+            <a class="navbar-brand" href="#" th:href="@{/books}">Tareas</a>
+            <a class="navbar-brand" href="#" th:href="@{/create_book}">Inserta Tarea</a>
+            <a class="navbar-brand" href="#" th:href="@{/logout}">Salir</a>
+        </div>
+    </div>
+</nav>
+
+<br><br><br><br><br><br><br>
+    <div class = "container">
+        <div class = "row">
+            <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center">
+                <h1 class = "text-center"> Modificar Tarea </h1>
+                <div class = "card-body">
+                    <form th:action="@{/{id} (id=${book.id})}" th:object = "${book}" method="POST">
+                        <div class ="form-group">
+                            <label> Tarea Id </label>
+                            <input type = "text"
+                                   name = "isbn" th:field = "*{isbn}"
+                                   class = "form-control"
+                                   placeholder="Escribe el Id: XXXX-PATIO-1|PATIO-2|COCINA|SALON|WC|ESTUDIO|DORMITORIO-1|DORMITORIO-2|COCHE"/>
+                        </div>
+                        <div class ="form-group">
+                            <label> Descripción </label>
+                            <input
+                                    type = "text"
+                                    name = "title"
+                                    th:field = "*{title}"
+                                    class = "form-control"
+                                    placeholder="Escribe la Descripción"
+                            />
+                        </div>
+                        <div class ="form-group">
+                            <label> Autor </label>
+                            <input
+                                    type = "text"
+                                    name = "author"
+                                    th:field = "*{author}"
+                                    class = "form-control"
+                                    placeholder="Escribe el Autor"
+                            />
+                        </div>
+                        <div class ="form-group">
+                            <label> Estado </label>
+                            <input
+                                    type = "text"
+                                    name = "status"
+                                    th:field = "*{status}"
+                                    class = "form-control"
+                                    placeholder="Escribe el Estado: TERMINADO|PENDIENTE"
+                            />
+                        </div>
+                        <div class = "box-footer">
+                            <button type="submit" class = "btn btn-success">
+                                Confirmar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
