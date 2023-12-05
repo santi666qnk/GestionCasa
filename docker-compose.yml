@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
   web:
@@ -8,9 +8,9 @@ services:
     ports:
         - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://oregon-postgres.render.com:5432/gestioncasa
-      - SPRING_DATASOURCE_USERNAME=santi
-      - SPRING_DATASOURCE_PASSWORD=bWvagIZV5pcOqRMUzoyZREJfo4hvH4PT
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://192.168.2.240:5433/gestioncasa
+      - SPRING_DATASOURCE_USERNAME=Santi
+      - SPRING_DATASOURCE_PASSWORD=gancho666
       - SPRING_PROFILES_ACTIVE=production
     command: ["java", "-jar", "/app.jar"]
     depends_on:
@@ -20,7 +20,7 @@ services:
     image: postgres:latest
     environment:
       - POSTGRES_DB=gestioncasa
-      - POSTGRES_USER=santi
-      - POSTGRES_PASSWORD=bWvagIZV5pcOqRMUzoyZREJfo4hvH4PT
+      - POSTGRES_USER=Santi
+      - POSTGRES_PASSWORD=gancho666
     ports:
       - "5432:5432"
